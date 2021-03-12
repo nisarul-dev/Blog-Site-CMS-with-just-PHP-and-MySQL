@@ -10,6 +10,8 @@ foreach ($db as $key => $value) {
 
 $connection  = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
 
-if ($connection) {
-    echo "Hello";
-}
+//if ($connection) {
+//    echo "Hello";
+//}
+
+//include "db.php";
