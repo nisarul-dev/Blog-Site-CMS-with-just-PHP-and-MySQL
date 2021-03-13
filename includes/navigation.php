@@ -20,6 +20,9 @@
                     <a href="#"><?php echo $cat_table_obj->cat_title; ?></a>
                 </li>
                 <?php endwhile; ?>
+                <li>
+                    <a href="admin">Admin</a>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
