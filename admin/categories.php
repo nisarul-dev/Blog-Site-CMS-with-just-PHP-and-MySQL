@@ -1,27 +1,9 @@
 <!-- Header -->
 <?php include "includes/admin_header.php"; ?>
 <?php $filename =  basename(__FILE__, '.php'); ?>
+<?php code_of_categories(); ?>
 <!-- Navigation -->
 <?php include "includes/admin_navigation.php"; ?>
-
-<?php
-    if (isset($_POST['cat-submit'])) {
-        $cat_name = $_POST['cat-text'];
-        // Sanitizing the input
-        $cat_name = filter_var($cat_name, FILTER_SANITIZE_STRING);
-        $cat_name = trim($cat_name);
-        $cat_name = $connection->real_escape_string($cat_name);
-
-        if ($cat_name == null) {
-            $cat_submit_error = "The category name field cannot be empty!";
-        } else if ( $connection->query("SELECT cat_title FROM categories WHERE cat_title = '$cat_name'")->num_rows > 0 ) {
-            $cat_submit_error = "The category \" {$cat_name} \" already exits!";
-        }  else {
-            $connection->query("INSERT INTO `categories` (`cat_id`, `cat_title`) VALUES (NULL, '$cat_name') ");
-        }
-    }
-
-?>
 
 <div id="page-wrapper">
 
@@ -53,15 +35,33 @@
                     <tr class="bg-primary">
                         <th class="text-center">#</th>
                         <th class="text-center">Category Name</th>
+                        <th class="text-center">Refactor Category</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
                     $cat_table = $connection->query("SELECT * FROM categories");
+                    $i=0;
                     while ( $cat_table_obj = $cat_table->fetch_object()) : ?>
                     <tr>
                         <th scope="row" class="text-center"><?php echo $cat_table_obj->cat_id; ?></th>
                         <td class="text-center"><?php echo $cat_table_obj->cat_title; ?></td>
+                        <td class="text-center">
+                            <form action='categories.php' method='post'>
+                            <?php
+                            $i++;
+                            // Edit Modal Contents
+                            $modal_edit_content = "
+                                <input class='form-control' type='" . "text' name='" . "the_name' value='" . "{$cat_table_obj->cat_title}'>
+                                <input type='text' value='{$cat_table_obj->cat_id}' name='edit_id' style='display: none;'>
+                            ";
+                            modal("edit" . $i,"Edit", "Edit Category Name", $modal_edit_content, "",  "", "onclick='this.closest(`form`).submit();return false;'"); ?> |
+                            <?php
+                            // Edit Delete Contents
+                            $modal_delete_content = "Do you want to delete category \" {$cat_table_obj->cat_title} \" ?";
+                            modal("delete" . $i, "Delete", "Confirmation", $modal_delete_content, "categories.php?delete=" . $cat_table_obj->cat_id, "", "", "Yes, Delete"); ?>
+                            </form>
+                        </td>
                     </tr>
                     <?php endwhile; ?>
                     </tbody>
