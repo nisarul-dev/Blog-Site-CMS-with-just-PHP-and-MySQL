@@ -22,7 +22,7 @@
             <div class="col-lg-6">
                 <form style="margin-top: 3em;" action="categories.php" method="post">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Add A New Category</label>
+                        <label for="cat-text">Add A New Category</label>
                         <input type="text" class="form-control" id="cat-text" name="cat-text" placeholder="Type Category Here">
                         <p class="text-danger"><?php echo isset($cat_submit_error) ? $cat_submit_error : ""; ?></p>
                     </div>
@@ -30,6 +30,7 @@
                 </form>
             </div>
             <div class="col-lg-6 table-responsive">
+            <p class="text-danger"><?php echo isset($cat_rename_error) ? $cat_rename_error : ""; ?></p>
                 <table class="table table-bordered table-striped table-hover">
                     <thead>
                     <tr class="bg-primary">
@@ -39,31 +40,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php
-                    $cat_table = $connection->query("SELECT * FROM categories");
-                    $i=0;
-                    while ( $cat_table_obj = $cat_table->fetch_object()) : ?>
-                    <tr>
-                        <th scope="row" class="text-center"><?php echo $cat_table_obj->cat_id; ?></th>
-                        <td class="text-center"><?php echo $cat_table_obj->cat_title; ?></td>
-                        <td class="text-center">
-                            <form action='categories.php' method='post'>
-                            <?php
-                            $i++;
-                            // Edit Modal Contents
-                            $modal_edit_content = "
-                                <input class='form-control' type='" . "text' name='" . "the_name' value='" . "{$cat_table_obj->cat_title}'>
-                                <input type='text' value='{$cat_table_obj->cat_id}' name='edit_id' style='display: none;'>
-                            ";
-                            modal("edit" . $i,"Edit", "Edit Category Name", $modal_edit_content, "",  "", "onclick='this.closest(`form`).submit();return false;'"); ?> |
-                            <?php
-                            // Edit Delete Contents
-                            $modal_delete_content = "Do you want to delete category \" {$cat_table_obj->cat_title} \" ?";
-                            modal("delete" . $i, "Delete", "Confirmation", $modal_delete_content, "categories.php?delete=" . $cat_table_obj->cat_id, "", "", "Yes, Delete"); ?>
-                            </form>
-                        </td>
-                    </tr>
-                    <?php endwhile; ?>
+                    <?php category_table_maker(); ?>
                     </tbody>
                 </table>
             </div>

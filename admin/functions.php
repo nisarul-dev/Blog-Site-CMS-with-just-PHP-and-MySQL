@@ -39,7 +39,7 @@ function sanitizer($text) {
 
 
 function code_of_categories() {
-    global $connection, $cat_submit_error;
+    global $connection, $cat_submit_error, $cat_rename_error;
     // Adding a Category
     if (isset($_POST['cat-submit'])) {
         $cat_name = $_POST['cat-text'];
@@ -65,8 +65,40 @@ function code_of_categories() {
     if(isset($_POST['the_name'])) {
         $new_cat_name = $_POST['the_name'];
         $cat_edit_id = $_POST['edit_id'];
-        $connection->query("UPDATE `categories` SET `cat_title` = '$new_cat_name' WHERE `categories`.`cat_id` = $cat_edit_id ");
+
+        if ( $connection->query("SELECT cat_title FROM categories WHERE cat_title = '$new_cat_name'")->num_rows > 0 ) {
+            echo $cat_rename_error = "Cannot rename to \" {$new_cat_name} \". Because, the category \" {$new_cat_name} \" already exits!";
+        } else {
+            $connection->query("UPDATE `categories` SET `cat_title` = '$new_cat_name' WHERE `categories`.`cat_id` = $cat_edit_id ");
+        }
     }
 }
 
 
+function category_table_maker() {
+    global $connection;
+    $cat_table = $connection->query("SELECT * FROM categories");
+    $i=0;
+    while ( $cat_table_obj = $cat_table->fetch_object()) : ?>
+        <tr>
+            <th scope="row" class="text-center"><?php echo $cat_table_obj->cat_id; ?></th>
+            <td class="text-center"><?php echo $cat_table_obj->cat_title; ?></td>
+            <td class="text-center">
+                <form action='categories.php' method='post'>
+                    <?php
+                    $i++;
+                    // Edit Modal Contents
+                    $modal_edit_content = "
+                        <input class='form-control' type='" . "text' name='" . "the_name' value='" . "{$cat_table_obj->cat_title}'>
+                        <input type='text' value='{$cat_table_obj->cat_id}' name='edit_id' style='display: none;'>
+                    ";
+                    modal("edit" . $i,"Edit", "Edit Category Name", $modal_edit_content, "",  "", "onclick='this.closest(`form`).submit();return false;'"); ?> |
+                    <?php
+                    // Edit Delete Contents
+                    $modal_delete_content = "Do you want to delete category \" {$cat_table_obj->cat_title} \" ?";
+                    modal("delete" . $i, "Delete", "Confirmation", $modal_delete_content, "categories.php?delete=" . $cat_table_obj->cat_id, "", "", "Yes, Delete"); ?>
+                </form>
+            </td>
+        </tr>
+    <?php endwhile;
+}

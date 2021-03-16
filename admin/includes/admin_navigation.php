@@ -31,14 +31,14 @@
             <li class="<?php if($filename == 'index') echo 'active' ?>">
                 <a href="./"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
             </li>
-            <li>
+            <li class="<?php if($filename == 'posts') echo 'active' ?>">
                 <a href="javascript:;" data-toggle="collapse" data-target="#posts_dropdown"><i class="fa fa-fw fa-file"></i> Posts <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="posts_dropdown" class="collapse">
                     <li>
-                        <a href="#">Dropdown Item</a>
+                        <a href="posts.php?posts=view">View Posts</a>
                     </li>
                     <li>
-                        <a href="#">Dropdown Item</a>
+                        <a href="posts.php?posts=add_new">Dropdown Item</a>
                     </li>
                 </ul>
             </li>

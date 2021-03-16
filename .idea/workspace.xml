@@ -19,8 +19,14 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/admin" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\CMS\admin" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -37,7 +43,9 @@
       <workItem from="1615636883389" duration="10998000" />
       <workItem from="1615709117890" duration="2683000" />
       <workItem from="1615718390788" duration="22302000" />
-      <workItem from="1615809797274" duration="2034000" />
+      <workItem from="1615809797274" duration="2256000" />
+      <workItem from="1615829135873" duration="2877000" />
+      <workItem from="1615841045382" duration="10189000" />
     </task>
     <servers />
   </component>
