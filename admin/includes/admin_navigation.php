@@ -38,7 +38,7 @@
                         <a href="posts.php?posts=view">View Posts</a>
                     </li>
                     <li>
-                        <a href="posts.php?posts=add_new">Dropdown Item</a>
+                        <a href="posts.php?posts=add_new">Add a New Post</a>
                     </li>
                 </ul>
             </li>

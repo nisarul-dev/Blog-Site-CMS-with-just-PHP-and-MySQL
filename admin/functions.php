@@ -56,8 +56,8 @@ function code_of_categories() {
     }
 
     // Deleting a Category
-    if( isset($_GET['delete']) ) {
-        $cat_id = $_GET['delete'];
+    if( isset($_GET['delete-category']) ) {
+        $cat_id = $_GET['delete-category'];
         $connection->query("DELETE FROM `categories` WHERE `categories`.`cat_id` = $cat_id");
     }
 
@@ -96,9 +96,18 @@ function category_table_maker() {
                     <?php
                     // Edit Delete Contents
                     $modal_delete_content = "Do you want to delete category \" {$cat_table_obj->cat_title} \" ?";
-                    modal("delete" . $i, "Delete", "Confirmation", $modal_delete_content, "categories.php?delete=" . $cat_table_obj->cat_id, "", "", "Yes, Delete"); ?>
+                    modal("delete" . $i, "Delete", "Confirmation", $modal_delete_content, "categories.php?delete-category=" . $cat_table_obj->cat_id, "", "", "Yes, Delete"); ?>
                 </form>
             </td>
         </tr>
     <?php endwhile;
 }
+
+// Custom Query Error
+function custom_query_error($the_query) {
+    global $connection;
+    if(!$the_query) {
+        die("QUERY FAILED: " . mysqli_error($connection));
+    }
+}
+

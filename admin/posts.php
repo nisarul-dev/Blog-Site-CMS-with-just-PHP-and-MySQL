@@ -29,6 +29,9 @@
                    case 'add_new':
                        include "add_new_posts.php";
                        break;
+                   case 'edit':
+                       include "edit_post.php";
+                       break;
                    default:
                        include "view_all_posts.php";
                }
