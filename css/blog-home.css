@@ -11,3 +11,6 @@ body {
 footer {
     margin: 50px 0;
 }
+.shadow {
+    background-color: #3d8b3d;
+}

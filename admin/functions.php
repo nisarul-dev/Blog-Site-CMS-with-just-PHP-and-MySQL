@@ -96,7 +96,7 @@ function category_table_maker() {
                     <?php
                     // Edit Delete Contents
                     $modal_delete_content = "Do you want to delete category \" {$cat_table_obj->cat_title} \" ?";
-                    modal("delete" . $i, "Delete", "Confirmation", $modal_delete_content, "categories.php?delete-category=" . $cat_table_obj->cat_id, "", "", "Yes, Delete"); ?>
+                    modal("delete" . $i, "Delete", "Confirmation", $modal_delete_content, "category.php?delete-category=" . $cat_table_obj->cat_id, "", "", "Yes, Delete"); ?>
                 </form>
             </td>
         </tr>

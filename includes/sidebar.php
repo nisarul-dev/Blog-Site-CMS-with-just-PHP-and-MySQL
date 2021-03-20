@@ -24,7 +24,7 @@
                 <?php
                 $cat_table = $connection->query("SELECT * FROM categories");
                 while ($cat_table_obj = $cat_table->fetch_object()) : ?>
-                <li><a href="#"><?php echo $cat_table_obj->cat_title; ?></a> </li>
+                <li><a href="category.php?cat_id=<?php echo $cat_table_obj->cat_id; ?>&cat_title=<?php echo $cat_table_obj->cat_title; ?>"><?php echo $cat_table_obj->cat_title; ?></a> </li>
                 <?php endwhile; ?>
             </ul>
         </div>

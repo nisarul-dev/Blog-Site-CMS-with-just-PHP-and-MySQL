@@ -27,16 +27,16 @@
                        include "includes/view_all_posts.php";
                        break;
                    case 'add_new':
-                       include "includes/add_new_posts.php";
+                       include "add_new_posts.php";
                        break;
                    case 'edit':
-                       include "includes/edit_post.php";
+                       include "edit_post.php";
                        break;
                    default:
                        include "includes/view_all_posts.php";
                }
            } else {
-               include "includes/view_all_posts.php";
+               include "includes/view_all_comments.php";
            }
 
            ?>
