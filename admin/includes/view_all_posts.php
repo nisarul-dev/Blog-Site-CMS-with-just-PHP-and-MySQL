@@ -24,12 +24,12 @@ if (isset($_GET['delete-post'])) {
     </thead>
     <tbody>
     <?php $i = 0;
-    $posts_table = $connection->query("SELECT * FROM `posts`");
+    $posts_table = $connection->query("SELECT * FROM `posts` ORDER BY `post_id` DESC");
     while ($posts_table_obj = $posts_table->fetch_object()) : ?>
         <tr>
             <th scope="row"><?php echo $posts_table_obj->post_id; ?></th>
             <td><?php echo $posts_table_obj->post_author; ?></td>
-            <td><?php echo $posts_table_obj->post_title; ?></td>
+            <td><a href="../post.php?p_id=<?php echo $posts_table_obj->post_id; ?>"><?php echo $posts_table_obj->post_title; ?></a></td>
             <td><?php echo isset($connection->query("SELECT cat_title FROM `categories` WHERE cat_id = $posts_table_obj->post_category_id ")->fetch_object()->cat_title) ? $connection->query("SELECT cat_title FROM `categories` WHERE cat_id = $posts_table_obj->post_category_id ")->fetch_object()->cat_title : "Uncategorized"; ?></td>
             <td><?php echo $posts_table_obj->post_status; ?></td>
             <td><img class="img-responsive" width="150" src="../images/<?php echo $posts_table_obj->post_image ; ?>" alt="images"></td>

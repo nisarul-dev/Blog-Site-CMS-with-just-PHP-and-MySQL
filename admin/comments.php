@@ -26,12 +26,12 @@
                    case 'view':
                        include "includes/view_all_posts.php";
                        break;
-                   case 'add_new':
-                       include "add_new_posts.php";
-                       break;
-                   case 'edit':
-                       include "edit_post.php";
-                       break;
+                //    case 'add_new':
+                //        include "add_new_posts.php";
+                //        break;
+                //    case 'edit':
+                //        include "edit_post.php";
+                //        break;
                    default:
                        include "includes/view_all_posts.php";
                }

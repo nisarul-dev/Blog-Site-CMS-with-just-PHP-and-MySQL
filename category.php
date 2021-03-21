@@ -20,7 +20,7 @@ $post_cat_title = $_GET['cat_title'];
             <!-- Blog Post Loop -->
             <div class="row">
                 <?php
-                $posts_table = $connection->query("SELECT * FROM posts WHERE post_category_id = $post_cat_id AND post_status = 'published'");
+                $posts_table = $connection->query("SELECT * FROM posts WHERE post_category_id = $post_cat_id AND post_status = 'published' ORDER BY `post_id` DESC");
                 while($posts_table_obj = mysqli_fetch_object($posts_table)) :?>
                     <div class="col-md-12" >
                         <div class="thumbnail" style="box-shadow: #5e5e5e -5px -2px 15px">

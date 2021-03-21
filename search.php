@@ -18,7 +18,7 @@ include "includes/header.php"; ?>
             <h1 class="page-header">
                 Searching For: <?php echo $searched_text; ?>
                 <small>&rarr; <?php
-                    $searched_posts_table = $connection->query("SELECT * FROM posts WHERE post_tags LIKE '%$searched_text%' OR post_author LIKE '%$searched_text%' OR post_content LIKE '%$searched_text%'");
+                    $searched_posts_table = $connection->query("SELECT * FROM posts WHERE post_tags LIKE '%$searched_text%' OR post_author LIKE '%$searched_text%' OR post_content LIKE '%$searched_text%' ORDER BY `post_id` DESC");
                     echo $searched_posts_table->num_rows;
                     ?> Result<?php if($searched_posts_table->num_rows > 1) { echo "s"; } ?></small>
             </h1>
