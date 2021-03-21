@@ -1,8 +1,4 @@
 <?php
-
-
-
-
 if (isset($_POST['post-submit'])) {
     $post_title = sanitizer($_POST['post-title']);
     if ( isset( $_POST['post-category'] )) {
