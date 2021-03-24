@@ -19,10 +19,13 @@
                 <li>
                     <a href="category.php?cat_id=<?php echo $cat_table_obj->cat_id; ?>&cat_title=<?php echo $cat_table_obj->cat_title; ?>"><?php echo $cat_table_obj->cat_title; ?></a>
                 </li>
-                <?php endwhile; ?>
-                <li>
-                    <a href="admin">Admin</a>
-                </li>
+                <?php endwhile;
+                if (isset($_SESSION['user_id'])) {
+                    echo "<li> <a href=\"admin\">Admin</a> </li>";
+                }
+                ?>
+
+
             </ul>
         </div>
         <!-- /.navbar-collapse -->

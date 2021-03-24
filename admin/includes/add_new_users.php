@@ -44,12 +44,12 @@ if (isset($_POST['user-submit'])) {
 <form action="users.php?source-user=add_new" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="first-name">First Name</label>
-        <input type="text" class="form-control" id="first-name" name="first-name" placeholder="Jhon">
+        <input type="text" class="form-control" id="first-name" name="first-name" placeholder="Jhon" <?php echo isset($error) && isset($first_name) ? "value=\"{$first_name}\"" : "" ; ?> >
         <small class="text-danger"><?php echo isset($error['first_name']) ? $error['first_name'] : "" ; ?></small>
     </div>
     <div class="form-group">
         <label for="last-name">Last Name</label>
-        <input type="text" class="form-control" id="last-name" name="last-name" placeholder="Doa">
+        <input type="text" class="form-control" id="last-name" name="last-name" placeholder="Doa" <?php echo isset($error) && isset($last_name) ? "value=\"{$last_name}\"" : "" ; ?> >
         <small class="text-danger"><?php echo isset($error['last_name']) ? $error['last_name'] : "" ; ?></small>
     </div>
 
@@ -60,13 +60,13 @@ if (isset($_POST['user-submit'])) {
         <div class="col-md-10">
             <div class="radio">
                 <label>
-                    <input type="radio" name="user-role" id="optionsRadios1" value="admin" checked>
+                    <input type="radio" name="user-role" id="optionsRadios1" value="admin" <?php if( isset($error) && isset($user_role) ) if( $user_role == 'admin' ) echo "checked"; ?> >
                     Admin
                 </label>
             </div>
             <div class="radio">
                 <label>
-                    <input type="radio" name="user-role" id="optionsRadios2" value="subscriber">
+                    <input type="radio" name="user-role" id="optionsRadios2" value="subscriber" <?php if( isset($error) && isset($user_role) ) if( $user_role == 'subscriber' ) echo "checked"; ?> >
                     Subscriber
                 </label>
             </div>
@@ -75,12 +75,12 @@ if (isset($_POST['user-submit'])) {
     </div>
     <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" name="username" placeholder="jhon135">
+        <input type="text" class="form-control" id="username" name="username" placeholder="jhon135" <?php echo isset($error) && isset($username) ? "value=\"{$username}\"" : "" ; ?> >
         <small class="text-danger"><?php echo isset($error['username']) ? $error['username'] : "" ; ?></small>
     </div>
     <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder="jhondoa@email.com">
+        <input type="email" class="form-control" id="email" name="email" placeholder="jhondoa@email.com" <?php echo isset($error) && isset($email) ? "value=\"{$email}\"" : "" ; ?> >
         <small class="text-danger"><?php echo isset($error['email']) ? $error['email'] : "" ; ?></small>
     </div>
     <div class="form-group">

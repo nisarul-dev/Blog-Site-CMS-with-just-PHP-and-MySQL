@@ -1,8 +1,15 @@
 <?php ob_start(); ?>
 <?php include "../includes/db.php"; ?>
-<?php include "functions.php"; ?>
+<?php include "functions.php"?>
+<?php
+    session_start();
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: ../../index.php");
+    }
+?>
 
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -13,7 +20,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>CMS Admin</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
