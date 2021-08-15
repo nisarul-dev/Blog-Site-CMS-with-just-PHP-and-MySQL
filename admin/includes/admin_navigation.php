@@ -60,7 +60,7 @@
                 </ul>
             </li>
             <li>
-                <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Profile</a>
+                <a class="<?php if($filename == 'profile') echo 'active' ?>" href="profile.php"><i class="fa fa-fw fa-edit"></i> Profile</a>
             </li>
 
         </ul>
